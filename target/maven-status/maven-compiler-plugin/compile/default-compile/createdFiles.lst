@@ -1,0 +1,13 @@
+egg\libreria\libreria\entidades\Editorial.class
+egg\libreria\libreria\controladores\EditorialController.class
+egg\libreria\libreria\servicios\EditorialService.class
+egg\libreria\libreria\repositorios\LibroRepositorio.class
+egg\libreria\libreria\controladores\PrincipalController.class
+egg\libreria\libreria\repositorios\AutorRepositorio.class
+egg\libreria\libreria\entidades\Autor.class
+egg\libreria\libreria\servicios\AutorService.class
+egg\libreria\libreria\controladores\AutorController.class
+egg\libreria\libreria\LibreriaApplication.class
+egg\libreria\libreria\repositorios\EditorialRepositorio.class
+egg\libreria\libreria\controladores\LibroController.class
+egg\libreria\libreria\entidades\Libro.class

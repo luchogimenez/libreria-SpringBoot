@@ -1,0 +1,8 @@
+.index-editoriales {
+    background-image: url(../img/editoriales.jpg);
+    background-position: left;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: auto;
+    height: 220px;
+}
