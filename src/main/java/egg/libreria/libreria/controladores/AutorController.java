@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -68,24 +69,32 @@ public class AutorController {
     }
     
     @PostMapping("/insertar")
-    public void crearAutor(@RequestParam String name){
-        Autor autor = autorService.crearAutor(name);
-        autorService.save(autor);
+    public ResponseEntity<?> crearAutor(@RequestBody Autor autorSchema){
+        
+        try{
+            Autor autor = autorService.crearAutor(autorSchema.getNombre());
+            return ResponseEntity.status(HttpStatus.CREATED).body(autorService.save(autor));
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
-    @PostMapping("/guardar")
-    public RedirectView guardar(@RequestParam String nombre) {
-        crearAutor(nombre);
+    @PutMapping("/modificar")
+    public ResponseEntity<?> modificar(@RequestBody Autor autorSchema){
+        autorService.modificar(autorSchema.getId(),autorSchema.getNombre());
+        return ResponseEntity.status(HttpStatus.OK).body("Modificado");
+    }
+    /*@PostMapping("/guardar")
+    public RedirectView guardar(@RequestBody String nombre) {
+        autorService.crearAutor(nombre);
         return new RedirectView("/autores");
-    }
+    }*/
+    
     @PostMapping("/guardarAutor")
     public void guardarAutor(@RequestBody Autor autor) {
         autorService.save(autor);
         
     }
-    @PutMapping("/modificar")
-    public void modificar(@RequestParam String id,@RequestParam String nombre){
-        autorService.modificar(id,nombre);
-    }
+    
     @PostMapping("/modificar")
     public RedirectView modificarAutor(@RequestParam String id, @RequestParam String nombre) {
         autorService.modificar(id, nombre);
@@ -125,7 +134,7 @@ public class AutorController {
     }
     @PostMapping("/eliminar/{id}")
     public RedirectView eliminarAutores(@PathVariable String id){
-        deshabilitar(id);
+        autorService.eliminar(id);
         return new RedirectView("/autores");
     }
 
