@@ -55,6 +55,7 @@ public class ClienteController {
         optionalCliente.get().setNombre(clienteDetails.getNombre());
         optionalCliente.get().setTelefono(clienteDetails.getTelefono());
         optionalCliente.get().setDocumento(clienteDetails.getDocumento());
+        optionalCliente.get().setAlta(clienteDetails.getAlta());
 
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.save(optionalCliente.get()));
     }

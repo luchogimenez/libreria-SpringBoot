@@ -45,5 +45,4 @@ public class ClienteService implements ClienteServiceInterface {
     public void deleteById(String id) {
         clienteRepositorio.deleteById(id);
     }
-    
 }
