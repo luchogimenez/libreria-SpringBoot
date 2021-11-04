@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 @RequestMapping("/clientes")
@@ -74,5 +75,21 @@ public class ClienteController {
         List<Cliente> clientes = clienteService.findAll();
         
         return clientes;
+    }
+    
+    @GetMapping("/crear")
+    public ModelAndView crearCliente() {
+        ModelAndView mav = new ModelAndView("cliente-formulario");
+        mav.addObject("cliente", new Cliente());
+        mav.addObject("title", "Crear Cliente");
+        mav.addObject("action", "guardar");
+        return mav;
+    }
+    
+    @GetMapping("/mostrar")
+    public ModelAndView mostrarClientes(){
+        ModelAndView mav = new ModelAndView("clientes");
+        mav.addObject("clientes", readAll());
+        return mav;
     }
 }

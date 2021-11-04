@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: egg.libreria.libreria.LibreriaApplicationTests
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 19.035 s - in egg.libreria.libreria.LibreriaApplicationTests
+=======
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 19.029 s - in egg.libreria.libreria.LibreriaApplicationTests
+>>>>>>> a8568f0d9fc2ba65381df8054ab62c4bb79578c7
