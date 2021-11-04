@@ -6,6 +6,7 @@ C:\Users\luis_\Desktop\GyL\libreria-SpringBoot-React\src\main\java\egg\libreria\
 C:\Users\luis_\Desktop\GyL\libreria-SpringBoot-React\src\main\java\egg\libreria\libreria\entidades\Cliente.java
 C:\Users\luis_\Desktop\GyL\libreria-SpringBoot-React\src\main\java\egg\libreria\libreria\repositorios\ClienteRepositorio.java
 C:\Users\luis_\Desktop\GyL\libreria-SpringBoot-React\src\main\java\egg\libreria\libreria\servicios\ClienteService.java
+C:\Users\luis_\Desktop\GyL\libreria-SpringBoot-React\src\main\java\egg\libreria\libreria\servicios\PrestamoServiceInterface.java
 C:\Users\luis_\Desktop\GyL\libreria-SpringBoot-React\src\main\java\egg\libreria\libreria\entidades\Libro.java
 C:\Users\luis_\Desktop\GyL\libreria-SpringBoot-React\src\main\java\egg\libreria\libreria\repositorios\LibroRepositorio.java
 C:\Users\luis_\Desktop\GyL\libreria-SpringBoot-React\src\main\java\egg\libreria\libreria\servicios\ClienteServiceInterface.java
@@ -20,3 +21,4 @@ C:\Users\luis_\Desktop\GyL\libreria-SpringBoot-React\src\main\java\egg\libreria\
 C:\Users\luis_\Desktop\GyL\libreria-SpringBoot-React\src\main\java\egg\libreria\libreria\repositorios\PrestamoRepositorio.java
 C:\Users\luis_\Desktop\GyL\libreria-SpringBoot-React\src\main\java\egg\libreria\libreria\controladores\ClienteController.java
 C:\Users\luis_\Desktop\GyL\libreria-SpringBoot-React\src\main\java\egg\libreria\libreria\servicios\AutorService.java
+C:\Users\luis_\Desktop\GyL\libreria-SpringBoot-React\src\main\java\egg\libreria\libreria\controladores\PrestamoController.java

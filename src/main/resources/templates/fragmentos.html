@@ -51,6 +51,18 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item dropdown">
+                    <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                       id="dropdown-mascotas" role="button">
+                        Clientes
+                    </a>
+                    <ul aria-labelledby="dropdown-mascotas" class="dropdown-menu dropdown-menu-dark">
+                        <li><a class="dropdown-item" th:href="@{/clientes/mostrar}">Mostrar</a></li>
+                        <li>
+                            <a class="dropdown-item" th:href="@{/clientes/crear}">Crear Cliente</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
