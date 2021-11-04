@@ -1,22 +1,24 @@
-C:\Users\luis_\Desktop\GyL\libreria-SpringBoot-React\src\main\java\egg\libreria\libreria\entidades\Editorial.java
-C:\Users\luis_\Desktop\GyL\libreria-SpringBoot-React\src\main\java\egg\libreria\libreria\servicios\EditorialService.java
-C:\Users\luis_\Desktop\GyL\libreria-SpringBoot-React\src\main\java\egg\libreria\libreria\repositorios\EditorialRepositorio.java
-C:\Users\luis_\Desktop\GyL\libreria-SpringBoot-React\src\main\java\egg\libreria\libreria\servicios\LibroService.java
-C:\Users\luis_\Desktop\GyL\libreria-SpringBoot-React\src\main\java\egg\libreria\libreria\LibreriaApplication.java
-C:\Users\luis_\Desktop\GyL\libreria-SpringBoot-React\src\main\java\egg\libreria\libreria\entidades\Cliente.java
-C:\Users\luis_\Desktop\GyL\libreria-SpringBoot-React\src\main\java\egg\libreria\libreria\repositorios\ClienteRepositorio.java
-C:\Users\luis_\Desktop\GyL\libreria-SpringBoot-React\src\main\java\egg\libreria\libreria\servicios\ClienteService.java
-C:\Users\luis_\Desktop\GyL\libreria-SpringBoot-React\src\main\java\egg\libreria\libreria\entidades\Libro.java
-C:\Users\luis_\Desktop\GyL\libreria-SpringBoot-React\src\main\java\egg\libreria\libreria\repositorios\LibroRepositorio.java
-C:\Users\luis_\Desktop\GyL\libreria-SpringBoot-React\src\main\java\egg\libreria\libreria\servicios\ClienteServiceInterface.java
-C:\Users\luis_\Desktop\GyL\libreria-SpringBoot-React\src\main\java\egg\libreria\libreria\controladores\EditorialController.java
-C:\Users\luis_\Desktop\GyL\libreria-SpringBoot-React\src\main\java\egg\libreria\libreria\repositorios\AutorRepositorio.java
-C:\Users\luis_\Desktop\GyL\libreria-SpringBoot-React\src\main\java\egg\libreria\libreria\servicios\PrestamoService.java
-C:\Users\luis_\Desktop\GyL\libreria-SpringBoot-React\src\main\java\egg\libreria\libreria\controladores\PrincipalController.java
-C:\Users\luis_\Desktop\GyL\libreria-SpringBoot-React\src\main\java\egg\libreria\libreria\entidades\Prestamo.java
-C:\Users\luis_\Desktop\GyL\libreria-SpringBoot-React\src\main\java\egg\libreria\libreria\controladores\LibroController.java
-C:\Users\luis_\Desktop\GyL\libreria-SpringBoot-React\src\main\java\egg\libreria\libreria\controladores\AutorController.java
-C:\Users\luis_\Desktop\GyL\libreria-SpringBoot-React\src\main\java\egg\libreria\libreria\entidades\Autor.java
-C:\Users\luis_\Desktop\GyL\libreria-SpringBoot-React\src\main\java\egg\libreria\libreria\repositorios\PrestamoRepositorio.java
-C:\Users\luis_\Desktop\GyL\libreria-SpringBoot-React\src\main\java\egg\libreria\libreria\controladores\ClienteController.java
-C:\Users\luis_\Desktop\GyL\libreria-SpringBoot-React\src\main\java\egg\libreria\libreria\servicios\AutorService.java
+C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\repositorios\AutorRepositorio.java
+C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\servicios\AutorService.java
+C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\servicios\ClienteService.java
+C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\entidades\Prestamo.java
+C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\entidades\Cliente.java
+C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\repositorios\ClienteRepositorio.java
+C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\entidades\Autor.java
+C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\servicios\LibroService.java
+C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\LibreriaApplication.java
+C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\servicios\PrestamoServiceInterface.java
+C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\repositorios\EditorialRepositorio.java
+C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\controladores\ClienteController.java
+C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\controladores\EditorialController.java
+C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\controladores\PrestamoController.java
+C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\servicios\EditorialService.java
+C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\servicios\ClienteServiceInterface.java
+C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\controladores\LibroController.java
+C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\servicios\PrestamoService.java
+C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\controladores\AutorController.java
+C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\repositorios\LibroRepositorio.java
+C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\controladores\PrincipalController.java
+C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\entidades\Libro.java
+C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\entidades\Editorial.java
+C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\repositorios\PrestamoRepositorio.java
