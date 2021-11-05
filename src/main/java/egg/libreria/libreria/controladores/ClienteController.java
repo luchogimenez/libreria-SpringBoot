@@ -130,4 +130,14 @@ public class ClienteController {
         opCliente.get().setAlta(Boolean.FALSE);
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.save(opCliente.get()));
     }
+    @PutMapping("/habilitar/{id}")
+    public ResponseEntity<?> habilitarCliente(@PathVariable(value = "id") String clienteId) {
+        //update(clienteDetails,clienteId);
+        Optional<Cliente> opCliente = clienteService.findById(clienteId);
+        if (!opCliente.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+        opCliente.get().setAlta(Boolean.TRUE);
+        return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.save(opCliente.get()));
+    }
 }

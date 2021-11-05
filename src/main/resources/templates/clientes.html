@@ -90,24 +90,18 @@
                 >
                 <div th:switch="${cliente.alta}">
                   <div th:case="true">
-                    <form
-                      method="post"
-                      th:action="@{/clientes/deshabilitar/__${cliente.id}__}"
-                    >
-                      <button class="btn btn-danger btn-sm" type="submit">
+                  
+                      <button class="btn btn-danger btn-sm" type="submit" id="Deshabilitar">
                         Deshabilitar
                       </button>
-                    </form>
+                    
                   </div>
                   <div th:case="false">
-                    <form
-                      method="post"
-                      th:action="@{/clientes/habilitar/__${cliente.id}__}"
-                    >
-                      <button class="btn btn-success btn-sm" type="submit">
+                    
+                      <button class="btn btn-success btn-sm" type="submit" id="Habilitar">
                         Habilitar
                       </button>
-                    </form>
+                    
                   </div>
                 </div>
               </td>
@@ -121,7 +115,7 @@
 
     <!-- JS -->
     <!-- <script th:src="@{/assets/bootstrap.bundle.min.js}"></script> -->
-    <script th:inline="javascript">
+    <!-- <script th:inline="javascript">
       /*<![CDATA[*/
       
       document.getElementById("Editar").addEventListener("click", (e) => {
@@ -130,17 +124,43 @@
         window.location.assign(`/clientes/editar/${id}`);
       });
       /*]]>*/
-    </script>
+    </script> -->
     <script th:inline="javascript">
         /*<![CDATA[*/
-        let elementModificar = document.getElementById("Deshabilitar");
-        if (elementModificar) {
-          elementModificar.addEventListener("click", (e) => {
+        let elementDeshabilitar = document.getElementById("Deshabilitar");
+        if (elementDeshabilitar) {
+          elementDeshabilitar.addEventListener("click", (e) => {
             e.preventDefault();
   
             let id = document.getElementById("id").textContent;
   
             const url = `/clientes/deshabilitar/${id}`;
+            console.log(url);
+            const options = {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              }
+            };
+            fetch(url, options)
+              .then((response) => response.json())
+              .then((data) => {
+                window.location.assign("/clientes/mostrar");
+              });
+          });
+        }
+        /*]]>*/
+      </script>
+      <script th:inline="javascript">
+        /*<![CDATA[*/
+        let elementHabilitar = document.getElementById("Habilitar");
+        if (elementHabilitar) {
+          elementHabilitar.addEventListener("click", (e) => {
+            e.preventDefault();
+  
+            let id = document.getElementById("id").textContent;
+  
+            const url = `/clientes/habilitar/${id}`;
             console.log(url);
             const options = {
               method: "PUT",

@@ -5,7 +5,6 @@ egg\libreria\libreria\servicios\EditorialService.class
 egg\libreria\libreria\entidades\Cliente.class
 egg\libreria\libreria\controladores\ClienteController.class
 egg\libreria\libreria\repositorios\LibroRepositorio.class
-egg\libreria\libreria\controladores\PrestamoController.class
 egg\libreria\libreria\servicios\ClienteService.class
 egg\libreria\libreria\controladores\PrincipalController.class
 egg\libreria\libreria\repositorios\AutorRepositorio.class

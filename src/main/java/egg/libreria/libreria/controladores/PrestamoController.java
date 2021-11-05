@@ -1,6 +1,8 @@
 package egg.libreria.libreria.controladores;
 
 import egg.libreria.libreria.entidades.Prestamo;
+import egg.libreria.libreria.servicios.ClienteService;
+import egg.libreria.libreria.servicios.LibroService;
 import egg.libreria.libreria.servicios.PrestamoService;
 import java.util.List;
 import java.util.Optional;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 @RequestMapping("/prestamos")
@@ -22,6 +25,11 @@ public class PrestamoController {
     @Autowired
     private PrestamoService prestamoService;
     
+    @Autowired
+    private LibroService libroService;
+    
+    @Autowired
+    private ClienteService clienteService;
     // Crear nuevo prestamo
     @PostMapping
     public ResponseEntity<?> create(@RequestBody Prestamo prestamo){
@@ -74,4 +82,27 @@ public class PrestamoController {
         
         return prestamos;
     }
+    
+    @GetMapping("/crear")
+    public ModelAndView crearPrestamo() {
+        ModelAndView mav = new ModelAndView("prestamo-formulario");
+        mav.addObject("prestamo", new Prestamo());
+        mav.addObject("libros", libroService.findAll());
+        mav.addObject("clientes", clienteService.findAll());
+        mav.addObject("title", "Crear Prestamo");
+        mav.addObject("action", "guardar");
+        return mav;
+    }
+    
+    @GetMapping("/mostrar")
+    public ModelAndView mostrarPrestamos() {
+        ModelAndView mav = new ModelAndView("prestamos");
+        mav.addObject("prestamos", readAll());
+        return mav;
+    }
+//    @PostMapping("/crear")
+//    public void crearPrestamo(@RequestBody Object datos){
+//        System.out.println(datos);
+//    }
+    
 }
