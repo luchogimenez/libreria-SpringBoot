@@ -11,10 +11,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mb-2 mb-md-0 w-100">
-                <!--DROPDOWN USUARIOS-->
                 <li class="nav-item dropdown">
                     <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
-                       id="dropdown-usuarios" role="button">
+                       id="dropdown-libros" role="button">
                         Libros
                     </a>
                     <ul aria-labelledby="dropdown-usuarios" class="dropdown-menu dropdown-menu-dark">
@@ -26,10 +25,9 @@
                         </li>
                     </ul>
                 </li>
-                <!--DROPDOWN MASCOTAS-->
                 <li class="nav-item dropdown">
                     <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
-                       id="dropdown-mascotas" role="button">
+                       id="dropdown-autores" role="button">
                         Autores
                     </a>
                     <ul aria-labelledby="dropdown-mascotas" class="dropdown-menu dropdown-menu-dark">
@@ -41,7 +39,7 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
-                       id="dropdown-mascotas" role="button">
+                       id="dropdown-editoriales" role="button">
                         Editoriales
                     </a>
                     <ul aria-labelledby="dropdown-mascotas" class="dropdown-menu dropdown-menu-dark">
@@ -53,13 +51,25 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
-                       id="dropdown-mascotas" role="button">
+                       id="dropdown-clientes" role="button">
                         Clientes
                     </a>
                     <ul aria-labelledby="dropdown-mascotas" class="dropdown-menu dropdown-menu-dark">
                         <li><a class="dropdown-item" th:href="@{/clientes/mostrar}">Mostrar</a></li>
                         <li>
                             <a class="dropdown-item" th:href="@{/clientes/crear}">Crear Cliente</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                       id="dropdown-prestamos" role="button">
+                        Prestamos
+                    </a>
+                    <ul aria-labelledby="dropdown-mascotas" class="dropdown-menu dropdown-menu-dark">
+                        <li><a class="dropdown-item" th:href="@{/prestamos/mostrar}">Mostrar</a></li>
+                        <li>
+                            <a class="dropdown-item" th:href="@{/prestamos/crear}">Crear Prestamo</a>
                         </li>
                     </ul>
                 </li>

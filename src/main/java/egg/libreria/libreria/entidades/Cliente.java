@@ -88,4 +88,10 @@ public class Cliente {
     public void setAlta(Boolean alta) {
         this.alta = alta;
     }
+
+    @Override
+    public String toString() {
+        return "Cliente{" + "id=" + id + ", documento=" + documento + ", nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono + ", alta=" + alta + '}';
+    }
+    
 }

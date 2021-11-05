@@ -25,9 +25,9 @@
       <h1 th:text="${title}"></h1>
       <hr class="mb-5 col-xl-12" />
       <!--<form autocomplete="off" class="needs-validation" id="formulario" method="POST"
-                  novalidate th:action="@{/autores/__${action}__}" th:object="${autor}">-->
+                        novalidate th:action="@{/autores/__${action}__}" th:object="${autor}">-->
       <form class="user" th:object="${cliente}">
-        <input th:field="*{id}" type="hidden" />
+        <input th:field="*{id}" type="hidden" id="id" />
         <div class="form-floating mb-3 col-xl-6">
           <input
             class="form-control"
@@ -39,35 +39,61 @@
           />
           <label for="nombre">Nombre</label>
         </div>
-
+        <div class="form-floating mb-3 col-xl-6">
+          <input
+            class="form-control"
+            id="apellido"
+            placeholder="Apellido"
+            required
+            th:field="*{apellido}"
+            type="text"
+          />
+          <label for="apellido">Apellido</label>
+        </div>
+        <div class="form-floating mb-3 col-xl-6">
+          <input
+            class="form-control"
+            id="documento"
+            placeholder="Documento"
+            required
+            th:field="*{documento}"
+            type="text"
+          />
+          <label for="documento">Documento</label>
+        </div>
+        <div class="form-floating mb-3 col-xl-6">
+          <input
+            class="form-control"
+            id="telefono"
+            placeholder="Telefono"
+            required
+            th:field="*{telefono}"
+            type="text"
+          />
+          <label for="telefono">Telefono</label>
+        </div>
         <div class="row">
-          <!--<div class="col-xl-3">
-                        <button class="btn btn-success" 
-                                th:text="${action == 'guardar'} ? 'Crear Autor' : 'Guardar cambios'"
-                                type="submit">
+          <div th:switch="${action}">
+            <div th:case="'guardar'">
+              <div class="col-md-3">
+                <button type="submit" class="btn btn-primary" id="Guardar">
+                  Guardar
+                </button>
+              </div>
+            </div>
+            <div class="mt-3" th:case="'modificar'">
+              <div class="col-md-3">
+                <button type="submit" class="btn btn-primary" id="Modificar">
+                  Modificar
+                </button>
+              </div>
+            </div>
 
-                        </button>
-                    </div>-->
-                    <div th:switch="${action}">
-                      <div th:case="'guardar'">
-                        <div class="col-md-3">
-                          <button type="submit" class="btn btn-primary" id="Guardar">
-                            Guardar
-                          </button>
-                        </div>
-                      </div>
-                      <div th:case="'modificar'">
-                        <div class="col-md-3">
-                          <button type="submit" class="btn btn-primary" id="Modificar">
-                            Modificar
-                          </button>
-                        </div>
-                      </div>
-          
-          <div class="col-md-3">
-            <button type="reset" class="btn btn-danger" id="Cancelar">
-              Cancelar
-            </button>
+            <div class="col-md-3 mt-3">
+              <button type="reset" class="btn btn-danger" id="Cancelar">
+                Cancelar
+              </button>
+            </div>
           </div>
         </div>
       </form>
@@ -76,92 +102,109 @@
     <footer th:replace="fragmentos :: footer"></footer>
 
     <script th:inline="javascript">
+      /*<![CDATA[*/
       document.getElementById("Cancelar").addEventListener("click", (e) => {
         e.preventDefault();
-        window.location.assign("/clientes");
+        window.location.assign("/clientes/mostrar");
       });
-
+      /*]]>*/
+    </script>
+    <script th:inline="javascript">
       /*<![CDATA[*/
+      let elementModificar = document.getElementById("Modificar");
+      if (elementModificar) {
+        elementModificar.addEventListener("click", (e) => {
+          e.preventDefault();
 
-      document.getElementById("Guardar").addEventListener("click", (e) => {
-        e.preventDefault();
+          let patron = /^[a-z]+( [a-z]+)*$/i;
+          let id = document.getElementById("id").value;
+          let nombre = document.getElementById("nombre").value;
+          let apellido = document.getElementById("apellido").value;
+          let documento = document.getElementById("documento").value;
+          let telefono = document.getElementById("telefono").value;
 
-        let patron = /^[a-z]+( [a-z]+)*$/i;
+          if (nombre === "") {
+            alert("por favor ingresar un valor en el campo  nombre");
+            return false;
+          }
+          // validar_texto
+          if (!patron.test(nombre)) {
+            alert("por favor ingrese el nombre de una persona");
+            return false;
+          }
+          // Generar las otras validaciones
+          let cliente = {
+            nombre: `${nombre}`,
+            apellido: `${apellido}`,
+            documento: `${documento}`,
+            telefono: `${telefono}`,
+          };
+          console.log(cliente);
+          const url = `/clientes/${id}`;
+          console.log(url);
+          const options = {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(cliente),
+          };
+          fetch(url, options)
+            .then((response) => response.json())
+            .then((data) => {
+              window.location.assign("/clientes/mostrar");
+            });
+        });
+      }
+      /*]]>*/
+    </script>
+    <script th:inline="javascript">
+      /*<![CDATA[*/
+      let elementGuardar = document.getElementById("Guardar");
+      if (elementGuardar) {
+        elementGuardar.addEventListener("click", (e) => {
+          e.preventDefault();
 
-        let nombre = document.getElementById("nombre").value;
+          let patron = /^[a-z]+( [a-z]+)*$/i;
 
-        if (nombre === "") {
-          alert("por favor ingresar un valor en el campo  nombre");
-          return false;
-        }
+          let nombre = document.getElementById("nombre").value;
+          let apellido = document.getElementById("apellido").value;
+          let documento = document.getElementById("documento").value;
+          let telefono = document.getElementById("telefono").value;
+          if (nombre === "") {
+            alert("por favor ingresar un valor en el campo  nombre");
+            return false;
+          }
 
-        // validar_texto
-        if (!patron.test(nombre)) {
-          alert("por favor ingrese el nombre de una persona");
-          return false;
-        }
+          // validar_texto
+          if (!patron.test(nombre)) {
+            alert("por favor ingrese el nombre de una persona");
+            return false;
+          }
+          // Generar las otras validaciones
+          let cliente = {
+            nombre: `${nombre}`,
+            apellido: `${apellido}`,
+            documento: `${documento}`,
+            telefono: `${telefono}`,
+          };
 
-        let nombreJSON = {"nombre":`${nombre}`};
-        /*
-            let modeloAutor = [[${autor}]];
-            modeloAutor.name= nombre;
-
-            */
-        const url = "/autores/insertar";
-        console.log(url);
-        const options = {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(nombreJSON),
-        };
-        fetch(url, options)
-          .then((response) => response.json())
-          .then((data) => {
-            window.location.assign("/autores");
-          });
-      });
-      document.getElementById("Modificar").addEventListener("click", (e) => {
-        e.preventDefault();
-
-        let patron = /^[a-z]+( [a-z]+)*$/i;
-
-        let nombre = document.getElementById("nombre").value;
-
-        if (nombre === "") {
-          alert("por favor ingresar un valor en el campo  nombre");
-          return false;
-        }
-
-        // validar_texto
-        if (!patron.test(nombre)) {
-          alert("por favor ingrese el nombre de una persona");
-          return false;
-        }
-
-        let nombreJSON = {"nombre":`${nombre}`};
-        /*
-            let modeloAutor = [[${autor}]];
-            modeloAutor.name= nombre;
-
-            */
-        const url = "/autores/modificar";
-        console.log(url);
-        const options = {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(nombreJSON),
-        };
-        fetch(url, options)
-          .then((response) => response.text())
-          .then((data) => {
-            window.location.assign("/autores");
-          });
-      });
-
+          const url = "/clientes";
+          console.log(url);
+          const options = {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(cliente),
+          };
+          fetch(url, options)
+            .then((response) => response.json())
+            .then((data) => {
+              window.location.assign("/clientes/mostrar");
+            });
+        });
+      }
       /*]]>*/
     </script>
   </body>
