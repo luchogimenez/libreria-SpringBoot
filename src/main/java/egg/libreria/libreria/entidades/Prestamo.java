@@ -33,13 +33,14 @@ public class Prestamo {
     private Cliente cliente;
 
     public Prestamo() {
+        this.alta=Boolean.TRUE;
     }
 
-    public Prestamo(String id, Date fechaPrestamo, Date fechaDevolucion, Boolean alta, Libro libro, Cliente cliente) {
+    public Prestamo(String id, Date fechaPrestamo, Date fechaDevolucion, Libro libro, Cliente cliente) {
+        super();
         this.id = id;
         this.fechaPrestamo = fechaPrestamo;
         this.fechaDevolucion = fechaDevolucion;
-        this.alta = alta;
         this.libro = libro;
         this.cliente = cliente;
     }

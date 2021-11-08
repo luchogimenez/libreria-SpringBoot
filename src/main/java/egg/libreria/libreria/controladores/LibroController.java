@@ -5,6 +5,7 @@ import egg.libreria.libreria.servicios.EditorialService;
 import egg.libreria.libreria.servicios.LibroService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -89,7 +90,7 @@ public class LibroController {
         return new RedirectView("/libros");
     }
 
-    @PostMapping("/eliminar/{id}")
+    @DeleteMapping("/eliminar/{id}")
     public RedirectView eliminar(@PathVariable String id) {
         libroService.eliminar(id);
         return new RedirectView("/libros");

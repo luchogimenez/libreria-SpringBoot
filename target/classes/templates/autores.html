@@ -22,40 +22,43 @@
             <div th:if="${autores.isEmpty()}">
                 <h5>Todavía no hay Autores cargados. <a th:href="@{/autores/crear}">Cargar Autores.</a></h5>
             </div>
-            <div class="table-responsive" th:unless="${autores.isEmpty()}">
-                <table class="table table-hover table-sm table-bordered">
-                    <thead class="table-secondary text-center">
-                        <tr>
-                            <th class="col-md-4 px-md-2" scope="col">Id</th>
-                            <th class="col-md-4 px-md-2" scope="col">Nombre</th>
-                            <th class="col-md-4 px-md-2" scope="col">Estado</th>
-                            <th class="col-md-4 px-md-2" scope="col">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="autor : ${autores}" th:classappend="${autor.alta} ? table-success : table-danger">
-                            <td class="col-md-4 px-md-2" th:text="${autor.id}"></td>
-                            <td class="col-md-4 px-md-2" th:text="${autor.nombre}"></td>
-                            <td class="col-md-4 px-md-2" th:text="${autor.alta}"></td>
-                            <td class="col-md-4 px-md-2 d-flex justify-content-around w-100">
-                                <a class="btn btn-secondary btn-sm me-3" th:href="@{/autores/editar/__${autor.id}__}">Editar</a>
-                                <div th:switch="${autor.alta}">
-                                    <div th:case="true">
-                                        <form method="post" th:action="@{/autores/deshabilitar/__${autor.id}__}">
-                                            <button class="btn btn-danger btn-sm  " type="submit">Deshabilitar</button>
-                                        </form>
+            <div data-spy="scroll">
+                <div class="table-responsive" th:unless="${autores.isEmpty()}">
+                    <table class="table table-hover table-sm table-bordered">
+                        <thead class="table-secondary text-center">
+                            <tr>
+                                <th class="col-md-4 px-md-2" scope="col">Id</th>
+                                <th class="col-md-4 px-md-2" scope="col">Nombre</th>
+                                <th class="col-md-4 px-md-2" scope="col">Estado</th>
+                                <th class="col-md-4 px-md-2" scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="autor : ${autores}" th:classappend="${autor.alta} ? table-success : table-danger">
+                                <td class="col-md-4 px-md-2" th:text="${autor.id}"></td>
+                                <td class="col-md-4 px-md-2" th:text="${autor.nombre}"></td>
+                                <td class="col-md-4 px-md-2" th:text="${autor.alta}"></td>
+                                <td class="col-md-4 px-md-2 d-flex justify-content-around w-100">
+                                    <a class="btn btn-secondary btn-sm me-3" th:href="@{/autores/editar/__${autor.id}__}">Editar</a>
+                                    <div th:switch="${autor.alta}">
+                                        <div th:case="true">
+                                            <form method="post" th:action="@{/autores/deshabilitar/__${autor.id}__}">
+                                                <button class="btn btn-danger btn-sm  " type="submit">Deshabilitar</button>
+                                            </form>
+                                        </div>
+                                        <div th:case="false">
+                                            <form method="post" th:action="@{/autores/habilitar/__${autor.id}__}">
+                                                <button class="btn btn-success btn-sm" type="submit">Habilitar</button>
+                                            </form>
+                                        </div>
                                     </div>
-                                    <div th:case="false">
-                                        <form method="post" th:action="@{/autores/habilitar/__${autor.id}__}">
-                                            <button class="btn btn-success btn-sm" type="submit">Habilitar</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
+
         </div>
 
         <footer th:replace="fragmentos :: footer"></footer>
