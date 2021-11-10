@@ -4,6 +4,8 @@ import egg.libreria.libreria.entidades.Libro;
 import egg.libreria.libreria.repositorios.AutorRepositorio;
 import egg.libreria.libreria.repositorios.EditorialRepositorio;
 import egg.libreria.libreria.repositorios.LibroRepositorio;
+import errores.ErrorServicio;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +36,7 @@ public class LibroService {
         libro.setAnio(anio);
         libro.setEjemplares(ejemplares);
         libro.setEjemplaresPrestados(ejemplaresPrestados);
-        libro.setEjemplaresRestantes(ejemplaresRestantes);
+//        libro.setEjemplaresRestantes(ejemplaresRestantes);
 
         libro.setAutor(autorRepository.findById(idAutor).orElse(null));
         libro.setEditorial(editorialRepository.findById(idEditorial).orElse(null));
@@ -52,7 +54,7 @@ public class LibroService {
         libro.setAnio(anio);
         libro.setEjemplares(ejemplares);
         libro.setEjemplaresPrestados(ejemplaresPrestados);
-        libro.setEjemplaresRestantes(ejemplaresRestantes);
+//        libro.setEjemplaresRestantes(ejemplaresRestantes);
         libro.setAutor(autorRepository.findById(idAutor).orElse(null));
         libro.setEditorial(editorialRepository.findById(idEditorial).orElse(null));
         libroRepository.save(libro);
@@ -86,7 +88,7 @@ public class LibroService {
         libro.setAnio(anio);
         libro.setEjemplares(ejemplares);
         libro.setEjemplaresPrestados(ejemplaresPrestados);
-        libro.setEjemplaresRestantes(ejemplaresRestantes);
+//        libro.setEjemplaresRestantes(ejemplaresRestantes);
 
         libro.setAutor(autorRepository.findById(idAutor).orElse(null));
         libro.setEditorial(editorialRepository.findById(idEditorial).orElse(null));
@@ -111,5 +113,39 @@ public class LibroService {
         libro.setAlta(Boolean.FALSE);
         libroRepository.save(libro);
     }
-
+    @Transactional
+    public void prestarEjemplar(String id){
+        Libro libro = buscarPorId(id);
+        if(libro.getEjemplaresRestantes()>=1){
+            libro.setEjemplaresPrestados(1);
+        }
+    }
+    public void validar (Long isbn, String titulo, Integer anio,
+            Integer ejemplares, Integer ejemplaresPrestados,
+            Integer ejemplaresRestantes, String idAutor, String idEditorial) throws ErrorServicio{
+        if(isbn == null){
+            throw new ErrorServicio("El isbn no puede ser nulo");
+        }
+        if(titulo == null || titulo.isEmpty()){
+            throw new ErrorServicio("El isbn no puede ser nulo o vacio");
+        }
+        if(anio == null || anio>(new Date()).getYear()){
+            throw new ErrorServicio("El año no puede ser nulo o mayor al año actual");
+        }
+        if(ejemplares == null || ejemplares<=0){
+            throw new ErrorServicio("La cantidad de ejemplares no puede ser nula o menor o igual a cero");
+        }
+        if(ejemplaresPrestados == null || ejemplaresPrestados>ejemplares){
+            throw new ErrorServicio("La cantidad de ejemplares Prestados no puede ser nula o mayor a la cantidad de ejemplares");
+        }
+        if(ejemplaresRestantes == null || ejemplaresRestantes!=ejemplares-ejemplaresPrestados){
+            throw new ErrorServicio("La cantidad de ejemplares Restantes no puede ser nula y debe ser igual a la resta entre ejemplares y ejemplares prestados");
+        }
+        if(idAutor == null || idAutor.isEmpty()){
+            throw new ErrorServicio("El idAutor no puede ser nulo o vacio");
+        }
+        if(idEditorial == null || idEditorial.isEmpty()){
+            throw new ErrorServicio("El idEditorial no puede ser nulo o vacio");
+        }
+    }
 }

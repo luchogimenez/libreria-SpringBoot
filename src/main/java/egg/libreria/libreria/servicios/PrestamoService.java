@@ -4,6 +4,7 @@ import egg.libreria.libreria.entidades.Cliente;
 import egg.libreria.libreria.entidades.Libro;
 import egg.libreria.libreria.entidades.Prestamo;
 import egg.libreria.libreria.repositorios.PrestamoRepositorio;
+import errores.ErrorServicio;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -38,7 +39,19 @@ public class PrestamoService implements PrestamoServiceInterface{
 
     @Override
     @Transactional
-    public Prestamo save(Prestamo prestamo) {
+    public Prestamo save(Prestamo prestamo) throws ErrorServicio{
+        if(prestamo.getLibro()==null){
+            throw new ErrorServicio("El libro no puede ser nulo");
+        }
+        if(prestamo.getCliente()==null){
+            throw new ErrorServicio("El cliente no puede ser nulo");
+        }
+        if(prestamo.getFechaDevolucion()==null){
+            throw new ErrorServicio("La fecha de devolución no puede ser nula");
+        }
+        if(prestamo.getFechaPrestamo()==null){
+            throw new ErrorServicio("La fecha de préstamo no puede ser nula");
+        }
         return prestamoRepositorio.save(prestamo);
     }
 

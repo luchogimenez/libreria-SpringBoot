@@ -1,6 +1,7 @@
 package egg.libreria.libreria.servicios;
 
 import egg.libreria.libreria.entidades.Prestamo;
+import errores.ErrorServicio;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
@@ -13,7 +14,7 @@ public interface PrestamoServiceInterface {
     
     public Optional<Prestamo> findById(String id);
     
-    public Prestamo save(Prestamo prestamo);
+    public Prestamo save(Prestamo prestamo) throws ErrorServicio;
     
     public void deleteById(String id);
 }

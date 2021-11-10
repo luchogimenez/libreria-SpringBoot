@@ -31,7 +31,8 @@ public class ClienteService implements ClienteServiceInterface {
     @Override
     @Transactional(readOnly = true)
     public Optional<Cliente> findById(String id) {
-        return clienteRepositorio.findById(id);
+        Optional<Cliente> clienteOptional = clienteRepositorio.findById(id);
+        return clienteOptional;
     }
 
     @Override

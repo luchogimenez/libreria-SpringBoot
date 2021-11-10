@@ -6,6 +6,7 @@ import egg.libreria.libreria.entidades.Prestamo;
 import egg.libreria.libreria.servicios.ClienteService;
 import egg.libreria.libreria.servicios.LibroService;
 import egg.libreria.libreria.servicios.PrestamoService;
+import errores.ErrorServicio;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -17,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,7 +46,15 @@ public class PrestamoController {
     // Crear nuevo prestamo
     @PostMapping
     public ResponseEntity<?> create(@RequestBody Prestamo prestamo) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(prestamoService.save(prestamo));
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED).body(prestamoService.save(prestamo));
+        } catch (ErrorServicio err) {
+            JSONObject myJson = new JSONObject();
+            myJson.put("message", err.getMessage());
+            myJson.put("status", "Error");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(myJson.toString());
+        }
+
     }
 
     // Obtener cliente por id
@@ -75,8 +85,15 @@ public class PrestamoController {
         optionalPrestamo.get().setLibro(prestamoDetails.getLibro());
         optionalPrestamo.get().setCliente(prestamoDetails.getCliente());
         optionalPrestamo.get().setAlta(prestamoDetails.getAlta());
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED).body(prestamoService.save(optionalPrestamo.get()));
+        } catch (ErrorServicio err) {
+            JSONObject myJson = new JSONObject();
+            myJson.put("message", err.getMessage());
+            myJson.put("status", "Error");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(myJson.toString());
+        }
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(prestamoService.save(optionalPrestamo.get()));
     }
 
     @DeleteMapping("/{id}")
@@ -115,25 +132,41 @@ public class PrestamoController {
     }
 
     @PostMapping("/crear")
-    public void crearPrestamo(@RequestBody String datos) {
+    public ResponseEntity<?> crearPrestamo(ModelMap model, @RequestBody String datos) {
         JSONObject myJson = new JSONObject(datos);
-        Cliente cliente = clienteService.findById(myJson.get("clienteId").toString()).get();
-        Libro libro = libroService.buscarPorId(myJson.get("libroId").toString());
-        SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
-        String strFecha = myJson.get("fechaDevolucion").toString();
+        JSONObject errorJson = new JSONObject();
+        Prestamo prestamo = new Prestamo();
+        Cliente cliente = null;
+        Libro libro = null;
         Date fechaDevolucion = null;
         try {
+
+            cliente = clienteService.findById(myJson.get("clienteId").toString()).orElse(null);
+            libro = libroService.buscarPorId(myJson.get("libroId").toString());
+            SimpleDateFormat formatoDelTexto = new SimpleDateFormat("yyyy-MM-dd");
+            String strFecha = myJson.get("fechaDevolucion").toString();
+
             fechaDevolucion = formatoDelTexto.parse(strFecha);
             System.out.println(fechaDevolucion.toString());
+
+            prestamo.setCliente(cliente);
+            prestamo.setLibro(libro);
+            prestamo.setFechaDevolucion(fechaDevolucion);
+            prestamo.setFechaPrestamo(new Date());
+            prestamoService.save(prestamo);
+            model.put("error", "El préstamo se ha creado de manera exitosa");
+        } catch (ErrorServicio err) {
+            
+            errorJson.put("error", err.getMessage());
+            errorJson.put("status", "Error");
+            model.put("error", err.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorJson.toString());
         } catch (ParseException ex) {
-            ex.printStackTrace();
+            model.put("error", ex.getMessage());
+            errorJson.put("error", ex.getMessage());
+            errorJson.put("status", "Error");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorJson.toString());
         }
-        Prestamo prestamo = new Prestamo();
-        prestamo.setCliente(cliente);
-        prestamo.setLibro(libro);
-        prestamo.setFechaDevolucion(fechaDevolucion);
-        prestamo.setFechaPrestamo(new Date());
-        
-        create(prestamo);
+        return ResponseEntity.status(HttpStatus.CREATED).body(prestamo);
     }
 }

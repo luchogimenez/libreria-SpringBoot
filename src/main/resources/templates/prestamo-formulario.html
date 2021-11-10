@@ -33,6 +33,7 @@
         th:action="@{/prestamos/__${action}__}"
         th:object="${prestamo}"
       >
+      <p th:if="${error!=null}" th:text="${error}"></p>
         <input th:field="*{id}" type="hidden" />
         <div class="form-floating mb-3 col-xl-6">
           <select
@@ -143,7 +144,8 @@
           };
           fetch(url, options).then((response) => response.text())
             .then((data) => {
-              window.location.assign("/prestamos/mostrar");
+              console.log(data);
+              // window.location.assign("/prestamos/mostrar");
             });
         });
       }
