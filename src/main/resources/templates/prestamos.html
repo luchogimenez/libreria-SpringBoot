@@ -52,7 +52,7 @@
               <td class="col-md-1 px-md-2" th:text="${prestamo.fechaPrestamo}"></td>
               <td class="col-md-2 px-md-2" th:text="${prestamo.fechaDevolucion}"></td>
               <td class="col-md-2 px-md-2" th:text="${prestamo.libro.titulo}"></td>
-              <td class="col-md-2 px-md-2" th:text="${prestamo.cliente.nombre}"></td>
+              <td class="col-md-2 px-md-2" th:text="|${prestamo.cliente.nombre} ${prestamo.cliente.apellido}|"></td>
               <td class="col-md-2 px-md-1" th:text="${prestamo.alta}"></td>
               <td class="col-md-2 px-md-2">
                 <a
@@ -86,22 +86,24 @@
         if (elementDeshabilitar) {
           elementDeshabilitar.addEventListener("click", (e) => {
             e.preventDefault();
-  
             let id = document.getElementById("id").textContent;
-  
-            const url = `/clientes/deshabilitar/${id}`;
+            let prestamo = [[${prestamo.fechaPrestamo}]];
+            const url = `/prestamos/deshabilitar/${id}`;
             console.log(url);
+            console.log(id);
+            console.log(prestamo);
             const options = {
               method: "PUT",
               headers: {
                 "Content-Type": "application/json",
-              }
+              },
+              body:JSON.stringify(prestamo)
             };
             fetch(url, options)
-              .then((response) => response.json())
-              .then((data) => {
-                window.location.assign("/clientes/mostrar");
-              });
+              .then((response) => response.text())
+              // .then((data) => {
+              //   window.location.assign("/clientes/mostrar");
+              // });
           });
         }
         /*]]>*/

@@ -70,12 +70,11 @@ public class LibroController {
     }
     @PostMapping("/guardar")
     public RedirectView guardar(@RequestParam Long isbn,@RequestParam String titulo,
-            @RequestParam Integer anio, @RequestParam Integer ejemplares, @RequestParam Integer ejemplaresPrestados,
-            @RequestParam Integer ejemplaresRestantes, @RequestParam("autor") String idAutor,
+            @RequestParam Integer anio, @RequestParam Integer ejemplares, 
+            @RequestParam Integer ejemplaresPrestados, @RequestParam("autor") String idAutor,
             @RequestParam("editorial") String idEditorial) {
-        libroService.crear(isbn,titulo,anio
-            ,ejemplares, ejemplaresPrestados,
-            ejemplaresRestantes,idAutor,idEditorial);
+        libroService.crear(isbn, titulo, anio, ejemplares, ejemplaresPrestados, 
+                idAutor, idEditorial);
         return new RedirectView("/libros");
     }
 

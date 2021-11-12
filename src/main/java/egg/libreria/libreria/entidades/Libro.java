@@ -94,9 +94,9 @@ public class Libro {
         return this.ejemplares-this.ejemplaresPrestados;
     }
 
-//    public void setEjemplaresRestantes(Integer ejemplaresRestantes) {
-//        this.ejemplaresRestantes = ejemplaresRestantes;
-//    }
+    public void setEjemplaresRestantes(Integer ejemplaresRestantes) {
+        this.ejemplaresRestantes = ejemplaresRestantes;
+    }
 
     public Boolean getAlta() {
         return alta;

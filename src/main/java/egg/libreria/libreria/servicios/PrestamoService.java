@@ -4,7 +4,7 @@ import egg.libreria.libreria.entidades.Cliente;
 import egg.libreria.libreria.entidades.Libro;
 import egg.libreria.libreria.entidades.Prestamo;
 import egg.libreria.libreria.repositorios.PrestamoRepositorio;
-import errores.ErrorServicio;
+import egg.libreria.libreria.errores.ErrorServicio;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;

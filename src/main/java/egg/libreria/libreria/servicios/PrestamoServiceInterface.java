@@ -1,7 +1,7 @@
 package egg.libreria.libreria.servicios;
 
 import egg.libreria.libreria.entidades.Prestamo;
-import errores.ErrorServicio;
+import egg.libreria.libreria.errores.ErrorServicio;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;

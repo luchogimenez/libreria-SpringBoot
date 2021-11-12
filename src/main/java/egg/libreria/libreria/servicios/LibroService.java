@@ -4,7 +4,7 @@ import egg.libreria.libreria.entidades.Libro;
 import egg.libreria.libreria.repositorios.AutorRepositorio;
 import egg.libreria.libreria.repositorios.EditorialRepositorio;
 import egg.libreria.libreria.repositorios.LibroRepositorio;
-import errores.ErrorServicio;
+import egg.libreria.libreria.errores.ErrorServicio;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -26,8 +26,7 @@ public class LibroService {
 
     @Transactional
     public void crear(Long isbn, String titulo, Integer anio,
-            Integer ejemplares, Integer ejemplaresPrestados,
-            Integer ejemplaresRestantes, String idAutor, String idEditorial) {
+            Integer ejemplares, Integer ejemplaresPrestados, String idAutor, String idEditorial) {
 
         Libro libro = new Libro();
 
@@ -36,7 +35,7 @@ public class LibroService {
         libro.setAnio(anio);
         libro.setEjemplares(ejemplares);
         libro.setEjemplaresPrestados(ejemplaresPrestados);
-//        libro.setEjemplaresRestantes(ejemplaresRestantes);
+        libro.setEjemplaresRestantes(libro.getEjemplaresRestantes());
 
         libro.setAutor(autorRepository.findById(idAutor).orElse(null));
         libro.setEditorial(editorialRepository.findById(idEditorial).orElse(null));
@@ -113,13 +112,7 @@ public class LibroService {
         libro.setAlta(Boolean.FALSE);
         libroRepository.save(libro);
     }
-    @Transactional
-    public void prestarEjemplar(String id){
-        Libro libro = buscarPorId(id);
-        if(libro.getEjemplaresRestantes()>=1){
-            libro.setEjemplaresPrestados(1);
-        }
-    }
+    
     public void validar (Long isbn, String titulo, Integer anio,
             Integer ejemplares, Integer ejemplaresPrestados,
             Integer ejemplaresRestantes, String idAutor, String idEditorial) throws ErrorServicio{
@@ -146,6 +139,16 @@ public class LibroService {
         }
         if(idEditorial == null || idEditorial.isEmpty()){
             throw new ErrorServicio("El idEditorial no puede ser nulo o vacio");
+        }
+    }
+    @Transactional
+    public void descontarLibroPrestado(Libro libro) throws ErrorServicio {
+        if(libro.getEjemplaresRestantes()>=1){
+            libro.setEjemplaresPrestados(libro.getEjemplaresPrestados()+1);
+            libro.setEjemplaresRestantes(libro.getEjemplaresRestantes());
+            libroRepository.save(libro);
+        }else{
+            throw new ErrorServicio("No hay libros para prestar");
         }
     }
 }

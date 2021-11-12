@@ -6,10 +6,9 @@ import egg.libreria.libreria.entidades.Prestamo;
 import egg.libreria.libreria.servicios.ClienteService;
 import egg.libreria.libreria.servicios.LibroService;
 import egg.libreria.libreria.servicios.PrestamoService;
-import errores.ErrorServicio;
+import egg.libreria.libreria.errores.ErrorServicio;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -147,12 +146,12 @@ public class PrestamoController {
             String strFecha = myJson.get("fechaDevolucion").toString();
 
             fechaDevolucion = formatoDelTexto.parse(strFecha);
-            System.out.println(fechaDevolucion.toString());
 
             prestamo.setCliente(cliente);
             prestamo.setLibro(libro);
             prestamo.setFechaDevolucion(fechaDevolucion);
             prestamo.setFechaPrestamo(new Date());
+            libroService.descontarLibroPrestado(libro);
             prestamoService.save(prestamo);
             model.put("error", "El préstamo se ha creado de manera exitosa");
         } catch (ErrorServicio err) {
@@ -168,5 +167,13 @@ public class PrestamoController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorJson.toString());
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(prestamo);
+    }
+    
+    @PutMapping("/deshabilitar/{id}")
+    public ResponseEntity<?> deshabilitarPrestamo(ModelMap model,@PathVariable(value = "id") String id, @RequestBody String datos) {
+        System.out.println(id);
+        System.out.println(datos);
+        
+        return null;
     }
 }

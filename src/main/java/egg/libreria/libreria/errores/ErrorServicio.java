@@ -1,4 +1,4 @@
-package errores;
+package egg.libreria.libreria.errores;
 
 public class ErrorServicio extends Exception {
 
