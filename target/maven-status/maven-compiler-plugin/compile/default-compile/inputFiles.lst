@@ -1,5 +1,6 @@
 C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\servicios\ClienteService.java
 C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\entidades\Prestamo.java
+C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\controladores\RolController.java
 C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\errores\ErrorServicio.java
 C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\controladores\ClienteController.java
 C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\controladores\EditorialController.java
@@ -13,6 +14,7 @@ C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\
 C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\controladores\PrincipalController.java
 C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\entidades\Libro.java
 C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\repositorios\UsuarioRepository.java
+C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\servicios\RolService.java
 C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\servicios\UsuarioService.java
 C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\entidades\Editorial.java
 C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\entidades\Usuario.java
@@ -23,9 +25,12 @@ C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\
 C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\repositorios\ClienteRepositorio.java
 C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\entidades\Autor.java
 C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\servicios\LibroService.java
+C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\repositorios\RolRepository.java
 C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\security\SecurityConfig.java
 C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\LibreriaApplication.java
 C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\servicios\PrestamoServiceInterface.java
 C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\repositorios\EditorialRepositorio.java
+C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\enums\Rol.java
 C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\servicios\ClienteServiceInterface.java
+C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\entidades\Rol.java
 C:\Users\Lucho\Desktop\EGG\Módulo 13 - Spring Boot\libreria-SpringBoot\src\main\java\egg\libreria\libreria\repositorios\PrestamoRepositorio.java

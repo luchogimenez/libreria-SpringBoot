@@ -1,5 +1,7 @@
 package egg.libreria.libreria.controladores;
 
+import egg.libreria.libreria.entidades.Usuario;
+import egg.libreria.libreria.servicios.RolService;
 import egg.libreria.libreria.servicios.UsuarioService;
 import java.security.Principal;
 import java.util.Map;
@@ -7,7 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -15,72 +19,65 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
+@RequestMapping("/usuario")
 public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
-
-    @GetMapping("/login")
-    public ModelAndView login(@RequestParam(required = false) String error,
-            @RequestParam(required = false) String logout, Principal principal) {
-
-        ModelAndView modelAndView = new ModelAndView("login");
-
-        if (error != null) {
-            modelAndView.addObject("error", "Correo o contraseña inválida");
-        }
-
-        if (logout != null) {
-            modelAndView.addObject("logout", "Ha salido correctamente de la plataforma");
-        }
-
-        if (principal != null) {
-            modelAndView.setViewName("redirect:/");
-        }
-
-        return modelAndView;
-    }
-
-    @GetMapping("/signup")
-    public ModelAndView signup(HttpServletRequest request, Principal principal) {
-        ModelAndView modelAndView = new ModelAndView("signup");
+@Autowired
+    private RolService rolService;
+    @GetMapping
+    public ModelAndView mostrar(HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView("usuarios");
         Map<String, ?> flashMap = RequestContextUtils.getInputFlashMap(request);
 
         if (flashMap != null) {
-            modelAndView.addObject("exito", flashMap.get("exito"));
-            modelAndView.addObject("error", flashMap.get("error"));
-            modelAndView.addObject("nombre", flashMap.get("nombre"));
-            modelAndView.addObject("apellido", flashMap.get("apellido"));
-            modelAndView.addObject("correo", flashMap.get("correo"));
-            modelAndView.addObject("clave", flashMap.get("clave"));
+            mav.addObject("exito", flashMap.get("exito"));
+            mav.addObject("error", flashMap.get("error"));
+        }
 
-        }
-        
-        if(principal!=null){
-            modelAndView.setViewName("redirect:/");
-        }
-        
-        return modelAndView;
+        mav.addObject("usuarios", usuarioService.buscarTodos());
+        return mav;
     }
     
-    @PostMapping("/registro")
-    public RedirectView signup(@RequestParam String nombre,@RequestParam String apellido,
-            @RequestParam String correo,@RequestParam String clave,RedirectAttributes attributtes){
-        RedirectView redirectView = new RedirectView("/login");
-        
-        try{
-            usuarioService.crear(nombre,apellido,correo,clave);
-            attributtes.addFlashAttribute("exito", "El registro se ha realizado satisfactoriamente");
-        }catch(Exception e){
-           attributtes.addFlashAttribute("error", e.getMessage()); 
-           attributtes.addFlashAttribute("nombre", nombre); 
-           attributtes.addFlashAttribute("apellido", apellido); 
-           attributtes.addFlashAttribute("correo", correo); 
-           attributtes.addFlashAttribute("clave", clave); 
-           
-           redirectView.setUrl("/signup");
+    @GetMapping("/crear")
+    public ModelAndView crear(HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView("usuario-formulario");
+        Map<String, ?> flashMap = RequestContextUtils.getInputFlashMap(request);
+
+        if (flashMap != null) {
+            mav.addObject("error", flashMap.get("error"));
+            mav.addObject("usuario", flashMap.get("usuario"));
+            mav.addObject("roles", rolService.buscarTodos());
+        } else {
+            mav.addObject("usuario", new Usuario());
+            mav.addObject("roles", rolService.buscarTodos());
         }
-        
+
+        mav.addObject("title", "Crear Usuario");
+        mav.addObject("action", "guardar");
+        return mav;
+    }
+    
+    @PostMapping("/guardar")
+    public RedirectView guardar(@ModelAttribute Usuario usuario, RedirectAttributes attributes) {
+        RedirectView redirectView = new RedirectView("/usuario");
+        System.out.println(usuario);
+        try {
+            usuarioService.crear(usuario);
+            attributes.addFlashAttribute("exito", "La creación ha sido realizada satisfactoriamente");
+        } catch (Exception e) {
+            attributes.addFlashAttribute("usuario", usuario);
+            attributes.addFlashAttribute("error", e.getMessage());
+            redirectView.setUrl("/usuario/crear");
+        }
+
         return redirectView;
+    }
+    
+    @GetMapping("/usuario")
+    public Usuario findByCorreo(@RequestParam(value = "correo") String correo){
+        
+        return usuarioService.findByCorreo(correo);
     }
 }

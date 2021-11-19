@@ -1,11 +1,7 @@
 package egg.libreria.libreria.entidades;
 
 import java.time.LocalDateTime;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;
@@ -42,6 +38,10 @@ public class Usuario {
 
     @LastModifiedDate
     private LocalDateTime modificacion;
+    
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Rol rol;
     
     private Boolean alta;
 

@@ -20,8 +20,8 @@
         <p th:if="${error}" th:text="${error}"></p>
         <p th:if="${logout}" th:text="${logout}"></p>
         <form th:action="@{/logincheck}" method="post">
-            <input type="text" placeholder="Email" name="correo" th:value="${correo}">
-            <input type="text" placeholder="Password" name="password" th:value="${password}">
+            <input type="email" placeholder="Email" name="username">
+            <input type="password" placeholder="Password" name="password">
             <button type="submit">Login</button>
         </form>
            
